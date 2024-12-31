@@ -1,55 +1,126 @@
+<!DOCTYPE html>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <style>
-	@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-	@import url('https://fonts.googleapis.com/css2?family=Henny+Penny&display=swap');
-	* { overflow-x: hidden; }
-	body { margin: 0; padding: 0; font-family: "Poppins", serif; }
-	#loader { display: flex; justify-content: center; height: 80vh; align-items: center; }
-	.loader {
-		width: fit-content;
-		font-weight: bold;
-		font-family: monospace;
-		font-size: 30px;
-		background: radial-gradient(circle closest-side,#000 94%,#0000) right/calc(200% - 1em) 100%;
-		animation: l24 1s infinite alternate linear;
-	}
-	.loader::before {
-		content: "Loading...";
-		line-height: 1.4em;
-		color: #0000;
-		background: inherit;
-		background-image: radial-gradient(circle closest-side,#fff 94%,#000);
-		-webkit-background-clip:text;
-		background-clip:text
-	}
-	@keyframes l24{
-		100%{background-position: left}
-	}
-	.header { display: flex; align-items: center; padding: 10px; font-family: "Henny Penny", serif; border-bottom: 1px solid #939393; }
-	.header h2 { margin: 0px 0px 0px 10px; }
-	.header img { width: 40px; height: 40px; border-radius: 125px; }
-	.frames { display: flex; flex-direction: row; max-width: 100%; overflow-x: auto; gap: 10px; padding: 10px; scroll-behavior: smooth; }
-	.frames iframe, .frames img { flex-shrink: 0; max-width: 450px; height: auto; }
-	.text { margin: 10px; }
-	.text > h2 , p { margin: 0px; }
-	.text > h2 { font-size: 23px; font-weight: 500; }
-	.des { font-size: 18px; font-weight: 300; }
-	.prince { font-size: 20px; font-weight: 600; }
-	button { padding: 8px; margin: 10px 0px 0px 0px; width: 130px; border: none; background-color: #000; color: #fff; font-family: "Poppins" }
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Henny+Penny&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+    
+    * { overflow-x: hidden; }
+    body { margin: 0; padding: 0; font-family: "Poppins", serif; }
+    
+    /* Your existing styles */
+    #loader { display: flex; justify-content: center; height: 80vh; align-items: center; }
+    .loader {
+        width: fit-content;
+        font-weight: bold;
+        font-family: monospace;
+        font-size: 30px;
+        background: radial-gradient(circle closest-side,#000 94%,#0000) right/calc(200% - 1em) 100%;
+        animation: l24 1s infinite alternate linear;
+    }
+    .loader::before {
+        content: "Loading...";
+        line-height: 1.4em;
+        color: #0000;
+        background: inherit;
+        background-image: radial-gradient(circle closest-side,#fff 94%,#000);
+        -webkit-background-clip:text;
+        background-clip:text
+    }
+    @keyframes l24{
+        100%{background-position: left}
+    }
+    .header { display: flex; align-items: center; padding: 10px; font-family: "Henny Penny", serif; border-bottom: 1px solid #939393; }
+    .header h2 { margin: 0px 0px 0px 10px; }
+    .header img { width: 40px; height: 40px; border-radius: 125px; }
+    .frames { display: flex; flex-direction: row; max-width: 100%; overflow-x: auto; gap: 10px; padding: 10px; scroll-behavior: smooth; }
+    .frames iframe, .frames img { flex-shrink: 0; max-width: 450px; height: auto; }
+    .text { margin: 10px; }
+    .text > h2 , p { margin: 0px; }
+    .text > h2 { font-size: 23px; font-weight: 500; }
+    .des { font-size: 18px; font-weight: 300; }
+    .prince { font-size: 20px; font-weight: 600; }
+    button { padding: 8px; margin: 10px 0px 0px 0px; width: 130px; border: none; background-color: #000; color: #fff; font-family: "Poppins" }
+
+    /* Gaming QR Code Styles */
+    #qr-container {
+        background: linear-gradient(45deg, #1a1a1a, #2d2d2d);
+        border: 3px solid #00ff88;
+        border-radius: 15px;
+        padding: 20px;
+        box-shadow: 0 0 20px rgba(0, 255, 136, 0.3);
+        margin: 20px;
+        animation: glow 2s infinite alternate;
+        text-align: center;
+    }
+
+    #qr-container h3 {
+        font-family: 'Press Start 2P', cursive;
+        color: #00ff88;
+        text-transform: uppercase;
+        text-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
+        margin-bottom: 20px;
+        font-size: 1.2em;
+    }
+
+    #qrcode {
+        background: white;
+        padding: 15px;
+        border-radius: 10px;
+        display: inline-block;
+        border: 5px solid #00ff88;
+    }
+
+    .upi-text {
+        font-family: 'Press Start 2P', cursive;
+        color: #00ff88;
+        font-size: 0.8em;
+        margin-top: 15px;
+        background: rgba(0, 255, 136, 0.1);
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #00ff88;
+    }
+
+    @keyframes glow {
+        from {
+            box-shadow: 0 0 20px rgba(0, 255, 136, 0.3);
+        }
+        to {
+            box-shadow: 0 0 30px rgba(0, 255, 136, 0.5);
+        }
+    }
+
+    #qr-container button {
+        font-family: 'Press Start 2P', cursive;
+        background: #00ff88;
+        color: #1a1a1a;
+        border: none;
+        padding: 12px 25px;
+        margin-top: 15px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-transform: uppercase;
+        font-size: 0.8em;
+    }
+
+    #qr-container button:hover {
+        background: #1a1a1a;
+        color: #00ff88;
+        box-shadow: 0 0 15px rgba(0, 255, 136, 0.5);
+    }
 </style>
+
 <div class="header">
-	<img src="https://i.ibb.co/4M71LZN/icon.png">
-	<h2>Krish Gaming</h2>
+    <img src="https://i.ibb.co/4M71LZN/icon.png">
+    <h2>Krish Gaming</h2>
 </div>
 <div id="details-container"></div>
 <div id="loader" style="display: none;">
-<div class="loader"></div>
+    <div class="loader"></div>
 </div>
-<div id="qr-code-container" style="display: none; text-align: center;">
-    <h3>Scan to Pay</h3>
-    <div id="qr-code"></div>
-    <button onclick="document.getElementById('qr-code-container').style.display='none';">Close</button>
-</div>
+
 <script src="details.js"></script>
