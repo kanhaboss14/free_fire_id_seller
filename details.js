@@ -23,13 +23,23 @@ fetch('https://script.google.com/macros/s/AKfycbyjLyr0Nzk-Q2isy_m8draoHxhKZFWqkh
             <p class="prince">Price: ₹${row[5]}</p>
             <button id="buy-now-button">Buy Now</button>
             </div>
+            <div id="qr-container" style="display: none; text-align: center; margin-top: 20px;">
+                <h3>Scan the QR Code to Pay</h3>
+                <img id="qr-code" alt="QR Code" />
+                <p>UPI ID: 9079078718@pthdfc</p>
+            </div>
         `;
         detailsContainer.innerHTML = html;
 
         document.getElementById('buy-now-button').addEventListener('click', () => {
-            const message = `Title: ${row[0]}\nVideo: ${row[2]}\nPrice: ${row[5]}`;
-            const whatsappUrl = `https://wa.me/+919079078718?text=${encodeURIComponent(message)}`;
-            window.open(whatsappUrl, '_blank');
+            const price = row[5];
+            const upiId = '9079078718@pthdfc';
+            const upiString = `upi://pay?pa=${upiId}&pn=Krish Gaming&am=${price}&cu=INR`;
+            const qrCodeImage = document.getElementById('qr-code');
+
+            qrCodeImage.src = `https://api.qrserver.com/v1/create-qr-code/?data=${encodeURIComponent(upiString)}&size=200x200`;
+
+            document.getElementById('qr-container').style.display = 'block';
         });
     })
     .catch(error => {
