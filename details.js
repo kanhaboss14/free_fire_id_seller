@@ -29,9 +29,10 @@ fetch('https://script.google.com/macros/s/AKfycbyjLyr0Nzk-Q2isy_m8draoHxhKZFWqkh
         document.getElementById('buy-now-button').addEventListener('click', () => {
             const price = row[5];
             const upiId = '9079078718@pthdfc';
-            const upiURL = `upi://pay?pa=${upiId}&pn=Krish Gaming&am`;
-
-            // Redirect to the UPI payment app
+            const name = 'Krish Gaming';
+            const transactionNote = 'Purchase from Krish Gaming';
+            const currency = 'INR';
+            const upiURL = `upi://pay?pa=${encodeURIComponent(upiId)}&pn=${encodeURIComponent(name)}&mc=&tid=&tr=&tn=${encodeURIComponent(transactionNote)}&am=${encodeURIComponent(price)}&cu=${encodeURIComponent(currency)}`;
             window.location.href = upiURL;
         });
     })
