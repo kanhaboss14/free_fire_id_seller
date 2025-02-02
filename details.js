@@ -27,12 +27,11 @@ fetch('https://script.google.com/macros/s/AKfycbyjLyr0Nzk-Q2isy_m8draoHxhKZFWqkh
         detailsContainer.innerHTML = html;
 
         document.getElementById('buy-now-button').addEventListener('click', () => {
-            const price = row[5];
             const upiId = '9079078718@pthdfc';
             const name = 'Krish Gaming';
             const transactionNote = 'Purchase from Krish Gaming';
             const currency = 'INR';
-            const upiURL = `upi://pay?pa=${encodeURIComponent(upiId)}&pn=${encodeURIComponent(name)}&mc=&tid=&tr=&tn=${encodeURIComponent(transactionNote)}&am=${encodeURIComponent(price)}&cu=${encodeURIComponent(currency)}`;
+            const upiURL = `upi://pay?pa=${encodeURIComponent(upiId)}&pn=${encodeURIComponent(name)}&mc=&tid=&tr=&tn=${encodeURIComponent(transactionNote)}&cu=${encodeURIComponent(currency)}`;
             window.location.href = upiURL;
         });
     })
