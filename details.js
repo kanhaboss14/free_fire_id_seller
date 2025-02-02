@@ -29,7 +29,7 @@ fetch('https://script.google.com/macros/s/AKfycbyjLyr0Nzk-Q2isy_m8draoHxhKZFWqkh
         document.getElementById('buy-now-button').addEventListener('click', () => {
             const price = row[5];
             const upiId = '9079078718@pthdfc';
-            const upiURL = `upi://pay?pa=${upiId}&pn=Krish Gaming&am=${price}&cu=INR`;
+            const upiURL = `upi://pay?pa=${upiId}&pn=Krish Gaming&am`;
 
             // Redirect to the UPI payment app
             window.location.href = upiURL;
